@@ -1,0 +1,23 @@
+---
+functions:
+  command:
+  - code: |-
+      parallel /path/to/command ::: x
+    contexts:
+      sudo:
+      unprivileged:
+  file-read:
+  - code: |-
+      parallel -a /path/to/input-file
+    comment: |-
+      Each line of the file is printed as a "command not found" error.
+    contexts:
+      sudo:
+      unprivileged:
+  shell:
+  - code: |-
+      parallel /bin/sh ::: -
+    contexts:
+      sudo:
+      unprivileged:
+...
