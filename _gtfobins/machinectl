@@ -1,0 +1,14 @@
+---
+functions:
+  shell:
+  - code: |-
+      machinectl shell
+    comment: |-
+      This spawns a shell on the host as the calling user.
+    contexts:
+      sudo:
+  - code: |-
+      machinectl shell .host /bin/sh
+    contexts:
+      sudo:
+...
